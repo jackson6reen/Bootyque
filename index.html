@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bootyque | סטודיו לנשים בנהריה — תוצאות או כסף חזרה</title>
+  <meta name="description" content="סטודיו Bootyque בנהריה — אימונים בקבוצות קטנות של עד 8 נשים. ליווי צמוד, חיטוב ועיצוב גוף, ליווי תזונה. לא רואה תוצאות? מחזירים לך את הכסף." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Secular+One&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #080808;
+      --dark: #0e0e0e;
+      --card: #141414;
+      --card2: #1a1a1a;
+      --yellow: #f5d800;
+      --yellow-dark: #d4bb00;
+      --yellow-dim: rgba(245,216,0,0.1);
+      --yellow-glow: rgba(245,216,0,0.25);
+      --white: #f0ede6;
+      --gray: #777;
+      --gray-light: rgba(240,237,230,0.6);
+      --border: rgba(255,255,255,0.06);
+      --wa: #25D366;
+      --wa-glow: rgba(37,211,102,0.35);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Heebo', sans-serif;
+      direction: rtl;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.65;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+    .text-center { text-align: center; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 66px; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(8,8,8,0.93);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.6); }
+    .logo { font-family: 'Secular One', sans-serif; font-size: 1.6rem; color: var(--yellow); }
+    .logo span { color: var(--white); }
+    .nav-links { display: flex; gap: 26px; align-items: center; list-style: none; }
+    .nav-links a { font-size: .84rem; font-weight: 500; color: var(--gray-light); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-wa { 
+      background: var(--wa); color: #fff; font-weight: 700; font-size: .82rem;
+      padding: 10px 20px; display: inline-flex; align-items: center; gap: 8px;
+      transition: transform 0.2s, background 0.2s; cursor: pointer; border: none;
+    }
+    .nav-wa:hover { background: #1eba56; transform: translateY(-2px); }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .burger span { display: block; width: 22px; height: 2px; background: var(--white); }
+
+    @media(max-width:768px){
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      body.menu-open .nav-links {
+        display: flex; flex-direction: column; position: fixed;
+        top: 66px; left: 0; right: 0; background: rgba(8,8,8,0.98);
+        padding: 28px; gap: 20px; border-bottom: 1px solid var(--border); z-index: 999;
+      }
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 1rem;
+      padding: 16px 36px; cursor: pointer; border: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s; white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-wa { background: var(--wa); color: #fff; box-shadow: 0 6px 28px var(--wa-glow); }
+    .btn-wa:hover { background: #1eba56; box-shadow: 0 12px 40px var(--wa-glow); }
+    .btn-yellow { background: var(--yellow); color: var(--black); }
+    .btn-yellow:hover { box-shadow: 0 10px 36px var(--yellow-glow); }
+    .btn-outline { background: transparent; color: var(--yellow); border: 2px solid rgba(245,216,0,0.3); }
+    .btn-outline:hover { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+    .btn-dark { background: var(--black); color: var(--yellow); }
+    .btn-lg { font-size: 1.05rem; padding: 18px 44px; }
+    .btn-block { display: flex; width: 100%; }
+
+    /* ─── SECTION HELPERS ─── */
+    .sec { padding: 100px 0; }
+    @media(max-width:600px) { .sec { padding: 70px 0; } }
+    .chip {
+      display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--yellow);
+      border: 1px solid var(--yellow-dim); padding: 5px 14px; margin-bottom: 18px;
+    }
+    .chip-dark { background: var(--black); color: var(--yellow); border-color: var(--black); }
+    .sec-title {
+      font-family: 'Secular One', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.08; margin-bottom: 14px;
+    }
+    .sec-title em { font-style: normal; color: var(--yellow); }
+    .sec-sub { font-size: 1rem; color: var(--gray-light); max-width: 520px; line-height: 1.8; }
+    .divider { width: 40px; height: 3px; background: var(--yellow); margin: 16px 0 0; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding: 100px 0 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(110deg, rgba(8,8,8,0.98) 45%, rgba(8,8,8,0.5) 100%),
+        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80') center 30%/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; z-index: 2; }
+    .hero-inner { max-width: 640px; padding: 80px 0 170px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow-dim); border: 1px solid rgba(245,216,0,0.15);
+      color: var(--yellow); font-size: .73rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; margin-bottom: 26px;
+    }
+    .hero h1 {
+      font-family: 'Secular One', sans-serif;
+      font-size: clamp(2.8rem, 7.5vw, 5.4rem); line-height: .95; margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: normal; color: var(--yellow); }
+    .hero h1 .outline { -webkit-text-stroke: 1.5px var(--white); color: transparent; }
+    .hero-sub {
+      font-size: 1.1rem; font-weight: 300; color: var(--gray-light);
+      max-width: 500px; line-height: 1.85; margin-bottom: 36px;
+    }
+    .hero-sub b { color: var(--white); font-weight: 700; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+    .hero-trust {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .8rem; color: var(--gray); margin-top: 6px;
+    }
+    .stats-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      background: rgba(14,14,14,0.96); border-top: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat { padding: 22px 20px; text-align: center; border-left: 1px solid var(--border); }
+    .stat:last-child { border-left: none; }
+    .stat-num { font-family: 'Secular One', sans-serif; font-size: 2.2rem; color: var(--yellow); line-height: 1; }
+    .stat-label { font-size: .72rem; color: var(--gray); margin-top: 4px; }
+
+    @media(max-width:600px){
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-left: none; }
+      .hero-inner { padding: 60px 0 150px; }
+    }
+
+    /* ─── PAIN ─── */
+    .pain { background: var(--dark); }
+    .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+    @media(max-width:700px) { .pain-grid { grid-template-columns: 1fr; } }
+    .pain-card {
+      background: var(--card); padding: 32px 28px;
+      border-right: 3px solid transparent;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .pain-card:hover { border-right-color: var(--yellow); background: var(--card2); }
+    .pain-card .ico { font-size: 1.5rem; margin-bottom: 12px; }
+    .pain-card h4 { font-size: .95rem; font-weight: 800; margin-bottom: 8px; }
+    .pain-card p { font-size: .86rem; color: var(--gray-light); line-height: 1.75; }
+    .pain-bridge {
+      background: var(--card); margin-top: 2px; padding: 32px 28px;
+      text-align: center; border-bottom: 3px solid var(--yellow);
+    }
+    .pain-bridge p { font-size: 1.02rem; color: var(--gray-light); line-height: 1.8; }
+    .pain-bridge b { color: var(--yellow); font-weight: 800; }
+
+    /* ─── OFFER ─── */
+    .offer {
+      background: var(--yellow); color: var(--black);
+      padding: 110px 0; position: relative; overflow: hidden;
+    }
+    .offer::before {
+      content: 'OFFER'; position: absolute;
+      font-family: 'Secular One', sans-serif; font-size: 18vw;
+      color: rgba(0,0,0,0.04); top: 50%; left: 50%;
+      transform: translate(-50%,-50%); pointer-events: none; white-space: nowrap;
+    }
+    .offer .wrap { position: relative; z-index: 2; }
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    @media(max-width:900px) { .offer-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .offer-left .sec-title { color: var(--black); }
+    .offer-left .divider { background: var(--black); }
+    .offer-pitch { font-size: 1.02rem; color: rgba(0,0,0,0.72); line-height: 1.85; margin-bottom: 24px; }
+    .offer-pitch b { color: var(--black); font-weight: 800; }
+    .offer-guarantee {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--black); color: var(--white);
+      padding: 22px 24px; margin-bottom: 24px;
+    }
+    .offer-guarantee .g-ico { font-size: 1.8rem; flex-shrink: 0; }
+    .offer-guarantee strong { display: block; font-size: .95rem; color: var(--yellow); margin-bottom: 4px; }
+    .offer-guarantee span { font-size: .82rem; color: var(--gray-light); line-height: 1.65; }
+    .countdown {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--black); color: var(--white);
+      padding: 14px 20px; margin-bottom: 24px;
+    }
+    .countdown .timer {
+      font-family: 'Secular One', sans-serif; font-size: 1.6rem;
+      color: var(--yellow); letter-spacing: 3px;
+    }
+    .countdown small { font-size: .7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+    .offer-box {
+      background: var(--black); color: var(--white);
+      padding: 44px 36px; position: relative;
+    }
+    @media(max-width:600px) { .offer-box { padding: 32px 20px; } }
+    .offer-box-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--yellow); color: var(--black);
+      font-size: .68rem; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; padding: 5px 18px; white-space: nowrap;
+    }
+    .offer-box-name { font-family: 'Secular One', sans-serif; font-size: 1.5rem; color: var(--yellow); margin-bottom: 4px; }
+    .offer-box-sub { font-size: .8rem; color: var(--gray); margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .price-old { font-size: .9rem; color: var(--gray); text-decoration: line-through; margin-bottom: 2px; }
+    .price-row { display: flex; align-items: flex-end; gap: 8px; }
+    .price-big { font-family: 'Secular One', sans-serif; font-size: 5rem; color: var(--yellow); line-height: 1; }
+    .price-unit { font-family: 'Secular One', sans-serif; font-size: 1.2rem; color: var(--gray); margin-bottom: 10px; }
+    .offer-list { list-style: none; margin: 22px 0 28px; }
+    .offer-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; font-size: .88rem; color: var(--gray-light);
+      border-bottom: 1px solid var(--border);
+    }
+    .offer-list li:last-child { border-bottom: none; }
+    .offer-list .ck { color: var(--yellow); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .offer-spots { text-align: center; font-size: .78rem; color: var(--gray); margin-top: 14px; }
+    .offer-spots b { color: var(--yellow); }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--black); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: center; }
+    @media(max-width:900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4; background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .about-photo .ph { font-size: 4rem; opacity: .15; }
+    .about-frame {
+      position: absolute; bottom: -14px; right: -14px;
+      width: 100%; height: 100%; border: 2px solid var(--yellow); z-index: -1;
+    }
+    @media(max-width:900px) { .about-frame { display: none; } }
+    .about-badge {
+      position: absolute; bottom: 20px; right: 20px;
+      background: var(--yellow); color: var(--black);
+      padding: 14px 18px; text-align: center;
+      font-family: 'Secular One', sans-serif; font-size: 1.1rem; line-height: 1.2;
+    }
+    .about-badge small { display: block; font-family: 'Heebo', sans-serif; font-size: .65rem; font-weight: 700; opacity: .7; }
+    .about-lead { font-size: 1.08rem; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.7; }
+    .about-body { font-size: .93rem; color: var(--gray-light); line-height: 1.9; margin-bottom: 14px; }
+    .about-body b { color: var(--white); font-weight: 700; }
+    .about-vals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 0 32px; }
+    @media(max-width:600px) { .about-vals { grid-template-columns: 1fr; } }
+    .aval { background: var(--card); padding: 16px 18px; border-right: 3px solid var(--yellow); }
+    .aval h5 { font-size: .86rem; font-weight: 700; margin-bottom: 3px; }
+    .aval p { font-size: .76rem; color: var(--gray); line-height: 1.5; }
+
+    /* ─── HOW ─── */
+    .how { background: var(--dark); }
+    .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 52px; }
+    @media(max-width:900px) { .how-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:550px) { .how-grid { grid-template-columns: 1fr; } }
+    .step {
+      background: var(--card); padding: 36px 24px; position: relative;
+      overflow: hidden; transition: background 0.25s;
+    }
+    .step:hover { background: var(--card2); }
+    .step-bg {
+      position: absolute; top: -12px; left: -6px;
+      font-family: 'Secular One', sans-serif; font-size: 6.5rem;
+      color: var(--yellow-dim); line-height: 1; pointer-events: none;
+    }
+    .step .ico { font-size: 1.5rem; margin-bottom: 14px; position: relative; z-index: 1; }
+    .step h4 { font-size: .93rem; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
+    .step p { font-size: .82rem; color: var(--gray-light); line-height: 1.75; position: relative; z-index: 1; }
+
+    /* ─── DIFF ─── */
+    .diff { background: var(--black); }
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 52px; }
+    @media(max-width:700px) { .diff-grid { grid-template-columns: 1fr; } }
+    .diff-col { background: var(--card); padding: 36px 32px; }
+    .diff-col.theirs { opacity: 0.55; }
+    .diff-col-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .diff-col.ours .diff-col-label { color: var(--yellow); }
+    .diff-col.theirs .diff-col-label { color: var(--gray); }
+    .diff-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .diff-item .icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .diff-col.ours .icon { color: var(--yellow); }
+    .diff-col.theirs .icon { color: #444; }
+    .diff-item p { font-size: .88rem; color: var(--gray-light); line-height: 1.6; }
+    .diff-col.theirs .diff-item p { color: var(--gray); }
+
+    /* ─── PRICING ─── */
+    .pricing { background: var(--dark); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 52px; }
+    @media(max-width:900px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .plan {
+      background: var(--card); padding: 40px 28px; position: relative;
+      display: flex; flex-direction: column; transition: transform 0.25s;
+    }
+    .plan:hover { transform: translateY(-6px); }
+    .plan.pop { background: var(--yellow); color: var(--black); z-index: 2; transform: translateY(-8px); }
+    .plan.pop:hover { transform: translateY(-14px); }
+    .pop-label {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--black); color: var(--yellow);
+      font-size: .62rem; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; padding: 5px 16px; white-space: nowrap;
+    }
+    .plan-name { font-family: 'Secular One', sans-serif; font-size: 1.6rem; margin-bottom: 4px; }
+    .plan-desc { font-size: .78rem; color: var(--gray); margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .plan.pop .plan-desc { color: rgba(0,0,0,0.55); border-bottom-color: rgba(0,0,0,0.1); }
+    .plan-price { font-family: 'Secular One', sans-serif; font-size: 3.4rem; line-height: 1; margin-bottom: 2px; }
+    .plan.pop .plan-price { color: var(--black); }
+    .plan-period { font-size: .72rem; color: var(--gray); margin-bottom: 24px; }
+    .plan.pop .plan-period { color: rgba(0,0,0,0.5); }
+    .plan-feats { flex: 1; margin-bottom: 26px; list-style: none; }
+    .plan-feats li { display: flex; gap: 8px; padding: 6px 0; font-size: .85rem; color: var(--gray-light); }
+    .plan.pop .plan-feats li { color: rgba(0,0,0,0.72); }
+    .plan-feats li::before { content: '—'; color: var(--yellow); flex-shrink: 0; }
+    .plan.pop .plan-feats li::before { color: var(--black); }
+    .plan-btn {
+      display: block; text-align: center; padding: 14px; font-weight: 800; font-size: .88rem;
+      border: 2px solid rgba(245,216,0,0.3); color: var(--yellow); transition: all 0.2s; cursor: pointer;
+    }
+    .plan-btn:hover { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+    .plan.pop .plan-btn { background: var(--black); color: var(--yellow); border-color: var(--black); }
+    .plan.pop .plan-btn:hover { background: #1a1a1a; }
+    .pt-extra {
+      background: var(--card); margin-top: 2px; padding: 28px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px; border-right: 4px solid var(--yellow);
+    }
+    .pt-extra h4 { font-family: 'Secular One', sans-serif; font-size: 1.15rem; margin-bottom: 4px; }
+    .pt-extra p { font-size: .84rem; color: var(--gray-light); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi { background: var(--black); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 52px; }
+    @media(max-width:900px) { .testi-grid { grid-template-columns: 1fr; } }
+    .tcard {
+      background: var(--card); padding: 32px 26px;
+      border-bottom: 3px solid transparent; transition: border-color 0.25s;
+    }
+    .tcard:hover { border-bottom-color: var(--yellow); }
+    .tcard-stars { color: var(--yellow); font-size: .85rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .tcard-q { font-family: Georgia, serif; font-size: 1.6rem; color: var(--yellow); line-height: 1; margin-bottom: 8px; }
+    .tcard-text { font-size: .88rem; color: var(--gray-light); line-height: 1.85; font-style: italic; margin-bottom: 18px; }
+    .tcard-author { display: flex; align-items: center; gap: 12px; }
+    .tcard-av {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--card2); border: 2px solid var(--yellow-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Secular One', sans-serif; font-size: .95rem; color: var(--yellow); flex-shrink: 0;
+    }
+    .tcard-name { font-weight: 700; font-size: .86rem; }
+    .tcard-result { font-size: .75rem; color: var(--yellow); margin-top: 2px; }
+    .tcard-feat {
+      grid-column: 1 / -1; background: var(--yellow); color: var(--black);
+      padding: 44px 40px; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+    }
+    @media(max-width:700px) { .tcard-feat { grid-template-columns: 1fr; padding: 30px 22px; } }
+    .tcard-feat .tcard-q { color: var(--black); font-size: 2.5rem; }
+    .tcard-feat .tcard-stars { color: var(--black); }
+    .tcard-feat .tcard-text { color: rgba(0,0,0,0.72); font-size: .96rem; }
+    .tcard-feat .tcard-name { color: var(--black); }
+    .tcard-feat .tcard-result { color: rgba(0,0,0,0.6); }
+    .tcard-feat .tcard-av { background: var(--black); border-color: rgba(0,0,0,0.15); }
+
+    /* ─── FAQ ─── */
+    .faq { background: var(--dark); }
+    .faq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
+    @media(max-width:900px) { .faq-layout { grid-template-columns: 1fr; gap: 36px; } }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: 0 0; border: 0; color: var(--white);
+      font-family: 'Heebo', sans-serif; font-size: .93rem; font-weight: 700;
+      text-align: right; padding: 18px 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--yellow); }
+    .faq-icon { color: var(--yellow); font-size: 1.2rem; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 18px; }
+    .faq-a p { font-size: .86rem; color: var(--gray-light); line-height: 1.85; }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--black); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    @media(max-width:900px) { .contact-grid { grid-template-columns: 1fr; gap: 44px; } }
+    .contact-body { font-size: .93rem; color: var(--gray-light); line-height: 1.85; margin-bottom: 28px; }
+    .ci { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; font-size: .9rem; }
+    .ci-icon {
+      width: 40px; height: 40px; background: var(--card);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; border: 1px solid var(--border);
+    }
+    .ci a { color: var(--yellow); }
+    .form-box { background: var(--card); padding: 36px 32px; border-top: 3px solid var(--yellow); }
+    @media(max-width:600px) { .form-box { padding: 28px 20px; } }
+    .form-box h3 { font-family: 'Secular One', sans-serif; font-size: 1.4rem; margin-bottom: 4px; }
+    .form-box .fsub { font-size: .78rem; color: var(--gray); margin-bottom: 24px; }
+    .fg { margin-bottom: 12px; }
+    .fg label { display: block; font-size: .7rem; font-weight: 700; color: var(--gray); margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase; }
+    .fg input, .fg select {
+      width: 100%; background: var(--card2); border: 1px solid var(--border);
+      color: var(--white); padding: 14px 16px; font-size: .9rem;
+      font-family: 'Heebo', sans-serif; direction: rtl; outline: 0; transition: border-color 0.2s;
+    }
+    .fg input:focus, .fg select:focus { border-color: var(--yellow); }
+    .fg input::placeholder { color: var(--gray); }
+    .fg select { cursor: pointer; }
+    .fg select option { background: var(--card2); }
+    .form-note { font-size: .72rem; color: var(--gray); text-align: center; margin-top: 12px; line-height: 1.6; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--dark); border-top: 1px solid var(--border); padding: 50px 0 24px; }
+    .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    @media(max-width:800px) { .foot-top { grid-template-columns: 1fr; gap: 28px; } }
+    .foot-logo { font-family: 'Secular One', sans-serif; font-size: 1.6rem; color: var(--yellow); margin-bottom: 10px; }
+    .foot-logo span { color: var(--white); }
+    .foot-about { font-size: .82rem; color: var(--gray); line-height: 1.8; max-width: 260px; }
+    .foot-col h5 { font-size: .7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--yellow); margin-bottom: 14px; }
+    .foot-col ul { list-style: none; }
+    .foot-col ul li { margin-bottom: 8px; }
+    .foot-col ul li a { font-size: .84rem; color: var(--gray); transition: color 0.2s; }
+    .foot-col ul li a:hover { color: var(--white); }
+    .foot-bot { border-top: 1px solid var(--border); padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .foot-bot p { font-size: .73rem; color: var(--gray); }
+
+    /* ─── STICKY WA FLOAT ─── */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      width: 58px; height: 58px; background: var(--wa); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+      box-shadow: 0 6px 28px var(--wa-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: waPulse 2s ease-in-out infinite;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 40px rgba(37,211,102,0.55); }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 6px 28px var(--wa-glow); }
+      50% { box-shadow: 0 6px 28px rgba(37,211,102,0.55), 0 0 0 12px rgba(37,211,102,0.1); }
+    }
+
+    /* ─── REVEAL ─── */
+    .rv { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .rv.d1 { transition-delay: .1s; } .rv.d2 { transition-delay: .2s; } .rv.d3 { transition-delay: .3s; }
+    .rv.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo">Booty<span>que</span></a>
+  <ul class="nav-links">
+    <li><a href="#offer">ההצעה</a></li>
+    <li><a href="#about">על שי</a></li>
+    <li><a href="#how">התהליך</a></li>
+    <li><a href="#pricing">מחירים</a></li>
+    <li><a href="#social">ביקורות</a></li>
+  </ul>
+  <a href="#" class="nav-wa" data-wa="היי שי! הגעתי מהאתר ורוצה לשמוע יותר 💪">💬 דברי עם שי</a>
+  <div class="burger" onclick="document.body.classList.toggle('menu-open')"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-badge rv show">⚡ סטודיו לנשים בלבד · נהריה</div>
+      <h1 class="rv show d1">את לא צריכה<br/><em>עוד ניסיון.</em><br/><span class="outline">את צריכה תוצאות.</span></h1>
+      <p class="hero-sub rv show d2">בסטודיואים אחרים את אנונימית. פה <b>שי מכיר את שמך, את הגב שלך, ואת הסיבה שהגעת.</b> קבוצות של עד 8 נשים. ליווי תזונה. מספרים אמיתיים. <b>לא רואה תוצאות? הכסף חוזר.</b></p>
+      <div class="hero-ctas rv show d3">
+        <a href="#" class="btn btn-wa btn-lg" data-wa="היי שי! ראיתי את האתר ואני רוצה לשמוע על תוכנית ה-21 יום 🔥">💬 ספרי לי על ה-21 יום</a>
+        <a href="#offer" class="btn btn-outline">ההצעה שלנו ←</a>
+      </div>
+      <div class="hero-trust rv show d3">🛡️ ערבות כסף חזרה מלאה · ללא שאלות · ללא תנאים</div>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">נשים מקסימום בקבוצה</div></div>
+      <div class="stat"><div class="stat-num">21</div><div class="stat-label">יום לתוצאה מדידה</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">ערבות כסף חזרה</div></div>
+      <div class="stat"><div class="stat-num">שי</div><div class="stat-label">המאמן שרואה אותך</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="chip">רגע, למה זה לא עבד עד עכשיו?</div>
+      <h2 class="sec-title">הבעיה היא לא <em>חוסר כוח רצון.</em><br/>הבעיה היא שאף אחד <em>לא ראה אותך.</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="pain-grid rv">
+      <div class="pain-card"><div class="ico">🏟️</div><h4>"הלכתי לחדר כושר. אף אחד לא ידע שקיימת."</h4><p>נכנסת לקבוצה של 40 נשים, עשית תנועות שלא ידעת אם הן נכונות, הזעת. חזרת הביתה. אף אחד לא שאל מה שמך. אף אחד לא שם לב כשלא הגעת.</p></div>
+      <div class="pain-card"><div class="ico">📱</div><h4>"ניסיתי אפליקציות ויוטיוב. נפצעתי."</h4><p>סרטונים יפים עם מאמנות חייכניות. אבל אף אחד לא ראה שהסקוואט שלך פוגע לך בברכיים, ושאת מושכת מהגב במקום מהרגליים.</p></div>
+      <div class="pain-card"><div class="ico">🥗</div><h4>"דיאטות רעב. ירדתי, עליתי, ירדתי, עליתי."</h4><p>800 קלוריות ביום, שייקים ירוקים, "בלי פחמימות". הגוף ירד — ואז חזר עם ריבית. כי בלי תוכנית תזונה מותאמת — זה חישוב שלא מסתדר.</p></div>
+      <div class="pain-card"><div class="ico">⏰</div><h4>"אין מישהי שמצפה לי. אז אני מדלגת."</h4><p>כשאין אחריות — קל לדלג "רק הפעם". ואז שוב. ואז "אתחיל אחרי הפסח". ועוד שנה עוברת. ואת באותו בגד ים שאת שונאת.</p></div>
+    </div>
+    <div class="pain-bridge rv"><p>כל זה — לא אשמתך. פשוט לא הייתה <b>מערכת שרואה אותך.</b> ב-Bootyque — יש.</p></div>
+    <div class="text-center rv" style="margin-top:40px"><a href="#offer" class="btn btn-yellow btn-lg">אז מה הפתרון? ←</a></div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="offer" id="offer">
+  <div class="wrap">
+    <div class="offer-grid">
+      <div class="offer-left rv">
+        <div class="chip chip-dark">ההצעה שאף סטודיו לא ייתן לך</div>
+        <h2 class="sec-title">"תוכנית הסתגלות וביטחון"<br/><span style="color:var(--black)">21 יום שמחזירים תוצאות</span></h2>
+        <div class="divider" style="background:var(--black)"></div>
+        <p class="offer-pitch">אנחנו לא מציעים "חודש בזול". <b>אנחנו מציעים לך 21 יום שבהם תגלי מה זה להתאמן במקום שבאמת רואה אותך.</b></p>
+        <p class="offer-pitch">6 אימונים. ליווי תזונה אישי. מדידת נקודת פתיחה ויציאה. <b>ביום ה-21 — רואים את המספרים שחור על גבי לבן.</b></p>
+        <p class="offer-pitch">ואם המספרים לא הזיזו? <b>מחזירים לך את כל ה-150 ₪. ללא שאלות.</b> כי אנחנו בטוחים בתוצאות שלנו. את לא מסתכנת בכלום.</p>
+        <div class="offer-guarantee">
+          <div class="g-ico">🛡️</div>
+          <div><strong>ערבות כסף חזרה מלאה</strong><span>לא ראית שינוי מדיד ב-21 יום? מחזירים לך את כל ה-150 ₪. בלי שאלות, בלי חוזים, בלי "קראי את האותיות הקטנות". אנחנו לוקחים את הסיכון — לא את.</span></div>
+        </div>
+        <div class="countdown"><span>⏰</span><div><small>ההצעה תקפה עד הלילה:</small><div class="timer" id="timer">00:00:00</div></div></div>
+        <br/><a href="#" class="btn btn-dark btn-lg" data-wa="היי שי! ראיתי את תוכנית ה-21 יום ב-150 ₪ ואני רוצה להצטרף! 🔥">💬 אני רוצה את ה-21 יום שלי</a>
+      </div>
+      <div class="offer-box rv d2">
+        <div class="offer-box-badge">⚡ הצעת כניסה מיוחדת</div>
+        <div class="offer-box-name">תוכנית ה-21 יום</div>
+        <div class="offer-box-sub">ההשקעה הכי חכמה שתעשי לגוף שלך</div>
+        <div class="price-old">מחיר מסלול BE ACTIVE: 410 ₪</div>
+        <div class="price-row"><div class="price-big">150</div><div class="price-unit">₪ בלבד</div></div>
+        <ul class="offer-list">
+          <li><span class="ck">✓</span> 6 אימונים בקבוצה קטנה — עד 8 נשים בלבד</li>
+          <li><span class="ck">✓</span> שקילת כניסה + מדידת היקפים ביום הראשון</li>
+          <li><span class="ck">✓</span> שיחת תזונה אישית עם שי — 30 דקות פנים אל פנים</li>
+          <li><span class="ck">✓</span> תוכנית אכילה מותאמת לחיים האמיתיים שלך</li>
+          <li><span class="ck">✓</span> תיקון טכניקה בזמן אמת בכל תרגיל</li>
+          <li><span class="ck">✓</span> שקילת יציאה + השוואת מספרים ביום 21</li>
+          <li><span class="ck">✓</span> גישה לקבוצת ווטסאפ תמיכה של הסטודיו</li>
+          <li><span class="ck" style="color:#E74C3C">🛡️</span> <b style="color:var(--white)">ערבות מלאה — לא ראית שינוי? הכסף חוזר</b></li>
+        </ul>
+        <a href="#" class="btn btn-wa btn-block btn-lg" data-wa="היי שי! אני רוצה את תוכנית ה-21 יום ב-150 ₪ 🔥 מה עושים?">💬 לשריין מקום עכשיו</a>
+        <div class="offer-spots"><b>⚡ מחפשים 10 נשים בלבד</b> · חודש הנוכחי</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SHAI -->
+<section class="about sec" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo rv"><div class="ph">👤</div><div class="about-frame"></div><div class="about-badge">מאמן<br/>מוסמך<small>10+ שנות ניסיון</small></div></div>
+      <div class="rv d2">
+        <div class="chip">הבן אדם מאחורי הסטודיו</div>
+        <h2 class="sec-title">שי אלטר —<br/><em>האדם שרואה אותך</em></h2>
+        <div class="divider"></div>
+        <p class="about-lead">"אני לא רוצה שתהיי עוד מספר במערכת. אני רוצה לדעת את שמך, את הגב שלך, ואת הסיבה האמיתית שבגללה דחפת את הדלת."</p>
+        <p class="about-body">שי אלטר הקים את Bootyque מתוך תסכול אחד: הוא ראה נשים נכנסות ויוצאות מחדרי כושר ענקיים — בלי שאף אחד מתקן להן תרגיל, בלי שמישהו שואל למה הן הגיעו, ובלי שאף אחד ישים לב שנעלמו.</p>
+        <p class="about-body"><b>הפתרון: קבוצות קטנות. עד 8 נשים. כל אחת מקבלת עיניים.</b> כל תרגיל מתוקן בזמן אמת. כל מתאמנת מקבלת תוכנית תזונה שמתאימה לחיים שלה. ומי שלא מגיעה — מקבלת שיחת טלפון.</p>
+        <p class="about-body">עם <b>מעל 10 שנות ניסיון בהדרכת נשים</b>, שי מתמחה בחיטוב ועיצוב גוף, ירידה במשקל ועלייה במסת שריר — עם דגש על טכניקה נכונה שמונעת פציעות.</p>
+        <div class="about-vals">
+          <div class="aval"><h5>טכניקה מדויקת</h5><p>כל חזרה מתוקנת. פחות פציעות, יותר תוצאות.</p></div>
+          <div class="aval"><h5>תזונה לחיים אמיתיים</h5><p>תוכנית שעובדת גם כשיש ארוחת שישי.</p></div>
+          <div class="aval"><h5>מישהו שרואה אותך</h5><p>לא הגעת? שי מרים טלפון. זאת המחויבות.</p></div>
+          <div class="aval"><h5>מספרים, לא תחושות</h5><p>שקילות והיקפים — תוצאה שאפשר למדוד.</p></div>
+        </div>
+        <a href="#" class="btn btn-wa" data-wa="היי שי! קראתי עליך באתר ורוצה לדבר ישירות 💪">💬 דברי ישירות עם שי</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how sec" id="how">
+  <div class="wrap">
+    <div class="text-center rv"><div class="chip">התהליך</div><h2 class="sec-title">מההודעה הראשונה<br/><em>ועד לתוצאה מדידה</em></h2><div class="divider" style="margin:16px auto 0"></div></div>
+    <div class="how-grid rv">
+      <div class="step"><div class="step-bg">01</div><div class="ico">📋</div><h4>שולחת הודעה — מקבלת שיחה</h4><p>שולחת הודעת ווטסאפ. שי חוזר אליך תוך שעה. שומע מה המטרות שלך, עונה על כל שאלה, וקובע איתך יום ושעה.</p></div>
+      <div class="step"><div class="step-bg">02</div><div class="ico">📏</div><h4>מדידת נקודת פתיחה</h4><p>ביום הראשון: שקילה, מדידת היקפים, ושיחת תזונה אישית של 30 דקות. יודעת בדיוק איפה את מתחילה — במספרים.</p></div>
+      <div class="step"><div class="step-bg">03</div><div class="ico">🏋️</div><h4>21 יום של עבודה אמיתית</h4><p>6 אימונים בקבוצה קטנה. תוכנית אכילה מותאמת. שי רואה כל תרגיל, מתקן בזמן אמת, ומוודא שאת עובדת נכון.</p></div>
+      <div class="step"><div class="step-bg">04</div><div class="ico">📊</div><h4>ביום 21 — תוצאות</h4><p>שקילה ומדידת היקפים מחדש. רואים את השינוי שחור על גבי לבן. לא ראית שינוי? מחזירים את הכסף. פשוט ככה.</p></div>
+    </div>
+    <div class="text-center rv" style="margin-top:48px"><a href="#" class="btn btn-wa btn-lg" data-wa="היי שי! אני מוכנה להתחיל 🔥 מה הצעד הראשון?">💬 אני מוכנה — בואו נתחיל</a></div>
+  </div>
+</section>
+
+<!-- DIFF -->
+<section class="diff sec">
+  <div class="wrap">
+    <div class="text-center rv"><div class="chip">השוואה כנה</div><h2 class="sec-title">Bootyque <em>לעומת</em> כולם</h2><div class="divider" style="margin:16px auto 0"></div></div>
+    <div class="diff-grid rv">
+      <div class="diff-col ours">
+        <div class="diff-col-label">✦ Bootyque</div>
+        <div class="diff-item"><span class="icon">✓</span><p>קבוצה של עד 8 נשים — מכירים את שמך</p></div>
+        <div class="diff-item"><span class="icon">✓</span><p>מאמן שמתקן את הטכניקה שלך בזמן אמת</p></div>
+        <div class="diff-item"><span class="icon">✓</span><p>ליווי תזונה אישי כולל תוכנית מותאמת</p></div>
+        <div class="diff-item"><span class="icon">✓</span><p>שקילות והיקפים — תוצאות במספרים</p></div>
+        <div class="diff-item"><span class="icon">✓</span><p>ערבות כסף חזרה — אם לא תראי תוצאה</p></div>
+        <div class="diff-item"><span class="icon">✓</span><p>מישהו ישאל איפה היית אם לא הגעת</p></div>
+      </div>
+      <div class="diff-col theirs">
+        <div class="diff-col-label">✗ שאר הסטודיואים</div>
+        <div class="diff-item"><span class="icon">✗</span><p>קבוצות של 20–40 — אנונימית לגמרי</p></div>
+        <div class="diff-item"><span class="icon">✗</span><p>אין תיקון טכניקה — נפצעות בשקט</p></div>
+        <div class="diff-item"><span class="icon">✗</span><p>אין ליווי תזונה — "אכלי פחות" זה לא פתרון</p></div>
+        <div class="diff-item"><span class="icon">✗</span><p>אין מדידות — "נראה לי שרזיתי קצת"</p></div>
+        <div class="diff-item"><span class="icon">✗</span><p>אין ערבות — שילמת, בין תגיעי ובין לא</p></div>
+        <div class="diff-item"><span class="icon">✗</span><p>אף אחד לא ישים לב שנעלמת</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing sec" id="pricing">
+  <div class="wrap">
+    <div class="text-center rv"><div class="chip">מסלולים ומחירים</div><h2 class="sec-title">בחרי את <em>המסלול שמתאים לך</em></h2><div class="divider" style="margin:16px auto 0"></div><p class="sec-sub" style="margin:12px auto 0;text-align:center">כל המסלולים כוללים קבוצה קטנה, מאמן צמוד, ותיקון טכניקה בזמן אמת.</p></div>
+    <div class="pricing-grid rv">
+      <div class="plan">
+        <div class="plan-name">BE ACTIVE</div>
+        <div class="plan-desc">2 אימונים בשבוע · מסלול בסיס</div>
+        <div class="plan-price">300</div>
+        <div class="plan-period">₪ / חודש (שנתי) · 410 ₪ חודשי · 350 ₪ ל-6 חודשים</div>
+        <ul class="plan-feats"><li>2 אימונים קבוצתיים בשבוע</li><li>קבוצה של עד 8 נשים</li><li>ליווי מאמן צמוד</li><li>תיקון טכניקה בזמן אמת</li></ul>
+        <a href="#" class="plan-btn" data-wa="היי שי! אני מתעניינת במסלול BE ACTIVE (2 פעמים בשבוע). מה הפרטים?">💬 להצטרפות</a>
+      </div>
+      <div class="plan pop">
+        <div class="pop-label">הכי פופולרי</div>
+        <div class="plan-name">PRO ACTIVE</div>
+        <div class="plan-desc">עד 4 אימונים בשבוע · תוצאות מהירות</div>
+        <div class="plan-price">350</div>
+        <div class="plan-period">₪ / חודש (שנתי) · 490 ₪ חודשי · 400 ₪ ל-6 חודשים</div>
+        <ul class="plan-feats"><li>עד 4 אימונים קבוצתיים בשבוע</li><li>קבוצה של עד 8 נשים</li><li>ליווי מאמן + תיקון צמוד</li><li>ליווי תזונתי בסיסי</li><li>גישה לקבוצת ווטסאפ תמיכה</li></ul>
+        <a href="#" class="plan-btn" data-wa="היי שי! אני מתעניינת במסלול PRO ACTIVE (עד 4 פעמים בשבוע). מה עושים? 🔥">💬 להצטרפות</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">כרטיסייה</div>
+        <div class="plan-desc">10 אימונים · גמישות מלאה · תוקף חודשיים</div>
+        <div class="plan-price">550</div>
+        <div class="plan-period">₪ ל-10 אימונים</div>
+        <ul class="plan-feats"><li>10 אימונים קבוצתיים</li><li>גמישות מלאה בתזמון</li><li>אין התחייבות חודשית</li><li>אותה קבוצה קטנה + ליווי</li></ul>
+        <a href="#" class="plan-btn" data-wa="היי שי! אני מתעניינת בכרטיסייה של 10 אימונים. מה הפרטים?">💬 להצטרפות</a>
+      </div>
+    </div>
+    <div class="pt-extra rv" style="margin-top:2px">
+      <div><h4>אימונים אישיים / זוגיים</h4><p>10 אימונים אישיים — 1,500 ₪ · 10 אימונים זוגיים — 1,750 ₪</p></div>
+      <a href="#" class="btn btn-wa" style="font-size:.85rem;padding:12px 24px" data-wa="היי שי! אני מתעניינת באימון אישי/זוגי 💪">💬 לפרטים</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi sec" id="social">
+  <div class="wrap">
+    <div class="text-center rv"><div class="chip">הוכחה חברתית</div><h2 class="sec-title">הן הגיעו בספק.<br/><em>הן נשארו בגאווה.</em></h2><div class="divider" style="margin:16px auto 0"></div></div>
+    <div class="testi-grid rv">
+      <div class="tcard-feat"><div><div class="tcard-q">&ldquo;</div></div><div><div class="tcard-stars">★★★★★</div><p class="tcard-text">ניסיתי שלושה חדרי כושר בשנתיים. בכולם אותו סיפור — נכנסת, מזיעה, יוצאת. אף אחד לא ידע אם הגעת. ב-Bootyque שי זוכר כל פרט. כשהחסרתי אימון — שאל. כשהצלחתי — חגג איתי. ב-6 שבועות ראיתי יותר תוצאות ממה שראיתי בשנה שלמה.</p><div class="tcard-author"><div class="tcard-av">מ</div><div><div class="tcard-name">מיכל, 34, נהריה</div><div class="tcard-result">⬇️ ‎-6 ס"מ היקף מותניים · ‎-4.2 ק"ג ב-6 שבועות</div></div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-q">&ldquo;</div><p class="tcard-text">הייתי בטוחה שאני "מהסוג שלא מגיב לאימונים". ב-21 הימים הראשונים ראיתי ‎-3.5 ק"ג ו-‎8 ס"מ פחות בהיקפים. הנתונים שם, שחור על לבן.</p><div class="tcard-author"><div class="tcard-av">י</div><div><div class="tcard-name">יעל, 41</div><div class="tcard-result">⬇️ ‎-3.5 ק"ג · ‎-8 ס"מ ב-21 יום</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-q">&ldquo;</div><p class="tcard-text">הקבוצה הפכה לחברות שלי. אנחנו מושכות אחת את השנייה. אין סיבה לדלג כי מישהי שם מחכה לי. לא היה לי את זה בשום מקום אחר.</p><div class="tcard-author"><div class="tcard-av">ד</div><div><div class="tcard-name">דנה, 29</div><div class="tcard-result">✦ 8 חודשים ברציפות · אפס עצירות</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-q">&ldquo;</div><p class="tcard-text">הגעתי אחרי לידה, בגוף שלא הכרתי. שי לא דחף, לא לחץ — הוא הנחה. תוך חודשיים חזרתי לבגדים שאהבתי. ולתחושה שאהבתי עוד יותר.</p><div class="tcard-author"><div class="tcard-av">נ</div><div><div class="tcard-name">נועה, 33</div><div class="tcard-result">⬇️ ‎-5 ק"ג אחרי לידה ב-8 שבועות</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-q">&ldquo;</div><p class="tcard-text">בסטודיו הקודם עשיתי סקוואט בטכניקה לא נכונה 3 חודשים. אף אחד לא ראה. פה שי תיקן לי ביום הראשון. הברכיים שלי מודות לו.</p><div class="tcard-author"><div class="tcard-av">ר</div><div><div class="tcard-name">רחל, 45</div><div class="tcard-result">✦ אפס פציעות · כוח עלה 40% ב-3 חודשים</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-q">&ldquo;</div><p class="tcard-text">ניגשתי בספקנות. ב-150 ₪ — מה יש להפסיד? ביום ה-21 הסתכלתי במדידות, והבנתי שזה הבית שלי. עכשיו כבר חצי שנה.</p><div class="tcard-author"><div class="tcard-av">ל</div><div><div class="tcard-name">לימור, 37</div><div class="tcard-result">⬇️ ‎-4 ק"ג · ‎-5 ס"מ מותניים ב-21 יום</div></div></div></div>
+    </div>
+    <div class="text-center rv" style="margin-top:48px"><a href="#" class="btn btn-wa btn-lg" data-wa="היי שי! קראתי את הביקורות ואני רוצה גם אני להתחיל 🔥">💬 אני רוצה להיות הסיפור הבא</a></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq sec" id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="rv">
+        <div class="chip">שאלות נפוצות</div>
+        <h2 class="sec-title">שאלות <em>ותשובות</em></h2>
+        <div class="divider"></div>
+        <p class="sec-sub" style="margin-bottom:24px">לא מצאת תשובה? שי יענה לך ישירות.</p>
+        <a href="#" class="btn btn-wa" data-wa="היי שי! יש לי שאלה על הסטודיו 🙋‍♀️">💬 שאלי את שי</a>
+      </div>
+      <div class="rv d2">
+        <div class="faq-item"><button class="faq-q">מה בדיוק כוללת תוכנית ה-21 יום?<span class="faq-icon">+</span></button><div class="faq-a"><p>6 אימונים בקבוצה קטנה (עד 8 נשים), שקילה ומדידת היקפים ביום 1 וביום 21, שיחת תזונה אישית עם שי (30 דקות), תוכנית אכילה מותאמת, וגישה לקבוצת ווטסאפ תמיכה. הכל ב-150 ₪ עם ערבות כסף חזרה מלאה.</p></div></div>
+        <div class="faq-item"><button class="faq-q">מה הערבות כוללת בדיוק?<span class="faq-icon">+</span></button><div class="faq-a"><p>אם ביום ה-21 לא נראה שינוי מדיד בשקילה ובהיקפים — מחזירים את כל ה-150 ₪ במלואם. ללא שאלות, ללא ויכוחים. אנחנו בטוחים בתוצאות — ולכן לוקחים את הסיכון.</p></div></div>
+        <div class="faq-item"><button class="faq-q">"אני לא בכושר בכלל. מתאים לי?"<span class="faq-icon">+</span></button><div class="faq-a"><p>בדיוק בשביל זה אנחנו קיימים. רוב המתאמנות הגיעו בלי רקע. שי בונה את הבסיס מאפס, עם טכניקה נכונה, בקצב שמתאים לך.</p></div></div>
+        <div class="faq-item"><button class="faq-q">"פוחדת להתנפח ולהיראות כמו גבר"<span class="faq-icon">+</span></button><div class="faq-a"><p>מיתוס. נשים לא מייצרות מספיק טסטוסטרון כדי "להתנפח". אימוני כוח נכונים יוצרים גוף מעוצב, מהודק ומשורטט — לא "בודיבילדרית".</p></div></div>
+        <div class="faq-item"><button class="faq-q">מה כולל ליווי התזונה?<span class="faq-icon">+</span></button><div class="faq-a"><p>שיחה של 30 דקות פנים אל פנים עם שי. מדברים על ההרגלים שלך, ובונים תוכנית שמתאימה לחיים האמיתיים — כולל ארוחות שישי.</p></div></div>
+        <div class="faq-item"><button class="faq-q">האם יש התחייבות אחרי ה-21 יום?<span class="faq-icon">+</span></button><div class="faq-a"><p>אין שום התחייבות אוטומטית. אם אהבת ורצית להמשיך — נדבר על המסלול שמתאים. ההחלטה לגמרי שלך.</p></div></div>
+        <div class="faq-item"><button class="faq-q">איפה הסטודיו ומה השעות?<span class="faq-icon">+</span></button><div class="faq-a"><p>דרך יחיעם 9, נהריה. שלחי הודעת ווטסאפ לשי לקבלת לוח האימונים המלא.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact sec" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="rv">
+        <div class="chip">בואי נדבר</div>
+        <h2 class="sec-title">הצעד הראשון<br/><em>הוא הגדול ביותר</em></h2>
+        <div class="divider"></div>
+        <p class="contact-body">שולחת הודעה — שי חוזר אליך תוך שעה. שיחה קצרה, בלי לחץ, בלי "מכירות אגרסיביות". רק שיחה כנה על המטרות שלך.</p>
+        <div class="ci"><div class="ci-icon">📍</div>דרך יחיעם 9, נהריה</div>
+        <div class="ci"><div class="ci-icon">📞</div><a href="tel:0547966838">054-7966-838</a></div>
+        <div class="ci"><div class="ci-icon">💬</div><a href="#" data-wa="היי שי! הגעתי מהאתר ורוצה לדבר 💪">הודעת ווטסאפ ישירה</a></div>
+      </div>
+      <div class="rv d2">
+        <div class="form-box" id="formBox">
+          <h3>השאירי פרטים</h3>
+          <div class="fsub">שי יחזור אליך תוך שעה</div>
+          <form id="leadForm">
+            <div class="fg"><label>שם מלא</label><input type="text" id="fn" placeholder="השם שלך" required/></div>
+            <div class="fg"><label>טלפון</label><input type="tel" id="fp" placeholder="05X-XXXXXXX" required/></div>
+            <div class="fg"><label>מה המטרה שלך?</label><input type="text" id="fg2" placeholder="לדוגמה: לרדת 5 ק״ג, לחטב, להתחזק"/></div>
+            <div class="fg"><label>מסלול שמעניין</label><select id="fpl"><option value="">בחרי (לא חובה)</option><option>תוכנית 21 יום — 150 ₪</option><option>BE ACTIVE — 2 אימונים בשבוע</option><option>PRO ACTIVE — עד 4 אימונים</option><option>כרטיסייה — 10 אימונים</option><option>אימון אישי / זוגי</option></select></div>
+            <button type="submit" class="btn btn-wa btn-block btn-lg" style="margin-top:8px">💬 שלחי הודעה לשי</button>
+          </form>
+          <p class="form-note">🔒 הפרטים שלך לא ישותפו · ⚡ תגובה תוך שעה</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div><div class="foot-logo">Booty<span>que</span></div><p class="foot-about">סטודיו בוטיק לנשים בנהריה. אימונים בקבוצות קטנות, ליווי תזונה, חיטוב ועיצוב גוף — עם ערבות תוצאה מלאה.</p><br/><a href="#" class="btn btn-wa" style="font-size:.8rem;padding:10px 18px" data-wa="היי שי! 💪">💬 ווטסאפ לשי</a></div>
+      <div class="foot-col"><h5>ניווט</h5><ul><li><a href="#offer">ההצעה</a></li><li><a href="#about">על שי</a></li><li><a href="#how">התהליך</a></li><li><a href="#pricing">מחירים</a></li><li><a href="#social">ביקורות</a></li><li><a href="#faq">שאלות</a></li><li><a href="#contact">צרי קשר</a></li></ul></div>
+      <div class="foot-col"><h5>צרי קשר</h5><ul><li><a href="tel:0547966838">📞 054-7966-838</a></li><li><a href="#contact">📍 דרך יחיעם 9, נהריה</a></li><li><a href="#" data-wa="היי שי! 💬">💬 ווטסאפ ישיר</a></li></ul></div>
+    </div>
+    <div class="foot-bot"><p>© 2024 Bootyque · שי אלטר · נהריה</p><p>🛡️ ערבות כסף חזרה מלאה על תוכנית ה-21 יום</p></div>
+  </div>
+</footer>
+
+<!-- STICKY WA FLOAT -->
+<a href="#" class="wa-float" data-wa="היי שי! 👋 הגעתי מהאתר ורוצה לשמוע יותר" title="ווטסאפ לשי">💬</a>
+
+<script>
+const WA='972547966838';
+document.querySelectorAll('[data-wa]').forEach(el=>{el.addEventListener('click',e=>{e.preventDefault();window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(el.dataset.wa),'_blank')})});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();document.body.classList.remove('menu-open');t.scrollIntoView({behavior:'smooth'})}})});
+new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')}),{threshold:.08,rootMargin:'0px 0px -40px 0px'}).observe(document.createElement('div'));
+document.querySelectorAll('.rv').forEach(el=>new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')}),{threshold:.08,rootMargin:'0px 0px -40px 0px'}).observe(el));
+document.querySelectorAll('.faq-q').forEach(b=>{b.addEventListener('click',()=>{const i=b.closest('.faq-item'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!o)i.classList.add('open')})});
+function tick(){const el=document.getElementById('timer');if(!el)return;const n=new Date(),e=new Date(n);e.setHours(23,59,59,999);const d=e-n;el.textContent=`${String(Math.floor(d/36e5)).padStart(2,'0')}:${String(Math.floor(d%36e5/6e4)).padStart(2,'0')}:${String(Math.floor(d%6e4/1e3)).padStart(2,'0')}`}tick();setInterval(tick,1e3);
+document.getElementById('leadForm')?.addEventListener('submit',e=>{e.preventDefault();const n=document.getElementById('fn')?.value||'',p=document.getElementById('fp')?.value||'',g=document.getElementById('fg2')?.value||'',pl=document.getElementById('fpl')?.value||'';window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(`שלום שי! 🔥\nהגעתי מאתר Bootyque.\n\nשם: ${n}\nטלפון: ${p}\nמטרה: ${g||'לא צוין'}\nמסלול: ${pl||'לא צוין'}\n\nאשמח שתחזור אליי 🙏`),'_blank');document.getElementById('formBox').innerHTML='<div style="text-align:center;padding:48px 20px"><div style="font-size:3.5rem;margin-bottom:16px">🔥</div><div style="font-family:Secular One,sans-serif;font-size:2rem;color:var(--yellow);margin-bottom:10px">ההודעה נשלחה!</div><p style="color:var(--gray-light);font-size:.95rem;line-height:1.7">שי יחזור אליך תוך שעה.<br/>הצעד הראשון הוא הגדול ביותר 💪</p></div>'});
+</script>
+</body>
+</html>
